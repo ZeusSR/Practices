@@ -1,0 +1,109 @@
+package OneToManyRelationship;
+
+import java.util.UUID;
+
+public class OnetomanymainClass {
+
+	public static void main(String[] args) {
+
+		Employee employee= new Employee(); 
+		Employee employee2= new Employee();//Dependent Object
+		
+		Employee[] employees=new Employee[2];
+		employees[0]=employee;
+		employees[1]=employee2;
+		
+		employee.setEid(UUID.randomUUID());
+		employee.setEname("Kuber");
+		employee.setEaddress("maldives");
+		employee.setEsalary(1000000);
+		
+		employee2.setEid(UUID.randomUUID());
+		employee2.setEname("Brock");
+		employee2.setEaddress("Kerela");
+		employee2.setEsalary(900000);
+		
+		Department department= new Department(); //Target Object
+		department.setDid(001);
+		department.setDname("Finance");
+		department.setEmployee(employees);
+		
+		department.display();
+
+	}
+
+}
+-------------------------------------------------------------------------------
+package OneToManyRelationship;
+
+public class Department {
+
+	private Integer did;
+	private String  dname ; //{"Finance","Marketing","IT"};
+	private Employee[] employees;
+	
+	public void setDid(Integer did) {
+		this.did = did;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public void setEmployee(Employee[] employees) {
+		this.employees = employees;
+	}
+	
+	public void display()
+	{
+		System.out.println("Department details*************");
+		System.out.println("Department ID is:"+did);
+		System.out.println("Department Name is"+dname);
+		
+		for(Employee employee:employees)
+		{	
+		System.out.println("Employee Details are===");
+		System.out.println("Employee ID is:"+employee.getEid());
+		System.out.println("Employee Name is:"+employee.getEname());
+		System.out.println("Employee address is:"+employee.getEaddress());
+		System.out.println("Employee Salary is:"+employee.getEsalary());
+		}
+	}
+	
+	
+}
+---------------------------------------------------------------------------
+package OneToManyRelationship;
+
+import java.util.UUID;
+
+public class Employee {
+
+	private UUID eid;
+	private String ename;
+	private String eaddress;
+	private Integer esalary;
+	
+	public void setEid(UUID uuid) {
+		this.eid = uuid;
+	}
+	public UUID getEid() {
+		return eid;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public String getEaddress() {
+		return eaddress;
+	}
+	public Integer getEsalary() {
+		return esalary;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public void setEaddress(String eaddress) {
+		this.eaddress = eaddress;
+	}
+	public void setEsalary(Integer esalary) {
+		this.esalary = esalary;
+	}
+}
