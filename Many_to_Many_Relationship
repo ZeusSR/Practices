@@ -1,0 +1,158 @@
+//Dependent Class
+package Has_a_relationshipPackage;
+
+public class BranchesClass {
+	
+	
+	private Integer bid;
+	private String bname;
+	private String baddress;
+
+//	//Constructor injection
+//	public Branch_Class(Integer bid, String bname, String baddress) {
+//		
+//		this.bid = bid;
+//		this.bname = bname;
+//		this.baddress = baddress;
+//	}
+	
+	//Setter Injection
+	public void setBid(Integer bid) {
+		this.bid = bid;
+	}
+
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
+
+	public void setBaddress(String baddress) {
+		this.baddress = baddress;
+	}
+
+	public Integer getBid() {
+		return bid;
+	}
+
+	public String getBname() {
+		return bname;
+	}
+
+	public String getBaddress() {
+		return baddress;
+	}
+	
+	
+
+
+}
+-------------------------------------------------------
+//Target Class
+package Has_a_relationshipPackage;
+
+public class StudentsClass {
+	
+	private Integer sid;
+	private String sname;
+	private Integer siq;
+	
+	//Has a relation
+	private BranchesClass branch;
+
+//	//Constructor injection
+//	public Student_Class(Integer sid, String sname, Integer siq, Branch_Class branch) {
+//		this.sid = sid;
+//		this.sname = sname;
+//		this.siq = siq;
+//		this.branch = branch;
+//	}
+	
+	//Setter Injection
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public void setSiq(Integer siq) {
+		this.siq = siq;
+	}
+
+	public void setBranch(BranchesClass branch) {
+		this.branch = branch;
+	}
+	
+		
+	public void display_student_details()
+	{
+		System.out.println("Student details are::");
+		System.out.println("Student id is:"+sid);
+		System.out.println("Student name is:"+sname);
+		System.out.println("His/Her IQ is:"+siq);
+		System.out.println("==========================");
+		System.out.println("Branch id is:"+branch.getBid());
+		System.out.println("Branch name is:"+branch.getBname());
+		System.out.println("Branch address is:"+branch.getBaddress());
+	}
+
+}
+----------------------------------------
+//Main Class
+package Has_a_relationshipPackage;
+
+public class ManytoMany_MainClass {
+
+	public static void main(String[] args) {
+		//Dependent Object
+		BranchesClass branch1 = new BranchesClass();
+		BranchesClass branch2 = new BranchesClass();
+		
+		branch1.setBid(23445);
+		branch1.setBname("SpringBoot");
+		branch1.setBaddress("Bhubaneswar");
+		
+		branch2.setBid(234658);
+		branch2.setBname("ReactJS");
+		branch2.setBaddress("Amsterdam");
+		//Target Object
+		StudentsClass student1 = new StudentsClass();
+		StudentsClass student2 = new StudentsClass();
+		StudentsClass student3 = new StudentsClass();
+		StudentsClass student4 = new StudentsClass();
+		
+		student1.setSid(9811);
+		student1.setSname("Zeus");
+		student1.setSiq(110);
+		student1.setBranch(branch1);
+		
+		student2.setSid(9812);
+		student2.setSname("Poseidon");
+		student2.setSiq(93);
+		student2.setBranch(branch1);
+		
+		student3.setSid(9813);
+		student3.setSname("Hades");
+		student3.setSiq(98);
+		student3.setBranch(branch2);
+		
+		student4.setSid(9814);
+		student4.setSname("Kratos");
+		student4.setSiq(109);
+		student4.setBranch(branch2);
+		
+		
+		student1.display_student_details();
+		System.out.println();
+		
+		student2.display_student_details();
+		System.out.println();
+		
+		student3.display_student_details();
+		System.out.println();
+		
+		student4.display_student_details();
+		System.out.println();
+	}
+
+}
