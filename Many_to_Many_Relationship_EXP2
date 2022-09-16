@@ -1,0 +1,123 @@
+package Many_To_ManyPackage;
+//Dependent Class
+public class Projects_Class {
+
+	private String projectid;
+	private String projectlanguagename;
+	private Integer projectnumbers;
+	
+	//Constructor Injection
+	public Projects_Class(String projectid, String projectlanguagename, Integer projectnumbers) {
+		this.projectid = projectid;
+		this.projectlanguagename = projectlanguagename;
+		this.projectnumbers = projectnumbers;
+	}
+
+	public String getProjectid() {
+		return projectid;
+	}
+
+	public String getProjectlanguagename() {
+		return projectlanguagename;
+	}
+
+	public Integer getProjectnumbers() {
+		return projectnumbers;
+	}
+	
+
+	
+	
+	
+}
+----------------------------------------------------------------------------------------------------------------------
+package Many_To_ManyPackage;
+//Target Class
+public class Interns_Class {
+	
+	private Integer internid;
+	private String internname;
+	private String internareaofinterest;
+	
+	//Has a relation
+	private Projects_Class[] projects;
+	
+	
+	
+	//Constructor injection
+	public Interns_Class(Integer internid, String internname, String internareaofinterest, Projects_Class[] projects) {
+		this.internid = internid;
+		this.internname = internname;
+		this.internareaofinterest = internareaofinterest;
+		this.projects = projects;
+	}
+	
+	
+	public void getInternsDetails()
+	{
+		
+		System.out.println("Intern ID is:"+internid);
+		System.out.println("Intern Name is:"+internname);
+		System.out.println("Intern Area of interest is:"+internareaofinterest);
+		System.out.println("-------------------");
+		
+		System.out.println("His projects details are::");
+		for(Projects_Class project:projects)
+		{	
+		System.out.println("Project ID is:"+project.getProjectid());
+		System.out.println("Project language name is:"+project.getProjectlanguagename());
+		System.out.println("No.Projects done :"+project.getProjectnumbers());
+		}
+	}
+
+
+
+
+	
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+//Main Launch class
+package Many_To_ManyPackage;
+
+public class ManyToMany_MainClass {
+	//Driving code
+	public static void main(String[] args) {
+
+		Projects_Class p1=new Projects_Class("QW123","JAVA",12);
+		Projects_Class p2=new Projects_Class("QW453","C#",5);
+		Projects_Class p3=new Projects_Class("QW923","KOTLIN",14);
+		
+		Projects_Class[] projects1 = new Projects_Class[3];
+		projects1[0]=p1;
+		projects1[1]=p2;
+		projects1[2]=p3;
+		
+		Projects_Class[] projects2 = new Projects_Class[2];
+		projects2[0]=p1;
+		projects2[1]=p3;
+	
+		Projects_Class[] projects3 = new Projects_Class[2];
+		projects3[0]=p1;
+		projects3[1]=p2;
+		
+		
+		Interns_Class intern1 =new Interns_Class(989,"Hulk","Spring Microservices",projects1);
+		Interns_Class intern2 =new Interns_Class(223,"Gor","React& GraphQl",projects1);
+		Interns_Class intern3 =new Interns_Class(432,"Plasids","Golang",projects2);
+		Interns_Class intern4 =new Interns_Class(567,"Neo","NoSQL",projects3);
+		
+		intern1.getInternsDetails();
+		System.out.println();
+		
+		intern2.getInternsDetails();
+		System.out.println();
+		
+		intern3.getInternsDetails();
+		System.out.println();
+		
+		intern4.getInternsDetails();
+		System.out.println();
+	}
+
+}
