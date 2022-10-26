@@ -1,5 +1,5 @@
 /*
- Here it is an example of synchronization which is  by the keyword synchronized */
+ Here it is an example of synchronization which is  by the keyword synchronized to avoid race condition */
 package ThreadPackage;
 
 class Atm implements Runnable
