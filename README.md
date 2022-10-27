@@ -1,2 +1,2 @@
 # Practices
-These are some of the examples I have done myself during my journey in technologies.
+These are some of the examples I have done  during my journey with technologies.
